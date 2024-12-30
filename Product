@@ -1,0 +1,41 @@
+public class Product {
+    private String name;
+    private double price;
+    private double sale=0.10;
+    private int stock;
+
+    public Product(String name,double price,int stock){
+        this.name=name;
+        this.price=price;
+        this.stock=stock;
+    }
+    public void dicreasesale(){
+        double discount=price * sale;
+        if(price>=discount){
+         price-=discount;
+        }
+    }
+    public boolean reduceStock(){
+        if(stock>0){
+            stock--;
+            return true;
+        }
+        return false;
+    }
+    public int getStock(){
+        return stock;
+    }
+
+    public double getSale(){
+        return sale;
+    }
+    public String getName() {
+        return name;
+    }
+    public double getPrice(){
+        return price;
+    }
+    public String toString(){
+        return name + " - " + price + " TL (Stock: " + stock + ")";
+    }
+}
