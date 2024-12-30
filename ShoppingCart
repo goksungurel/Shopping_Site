@@ -1,0 +1,53 @@
+public class ShoppingCart {
+    private Product[] cart;  // Sepet için bir dizi
+    private int itemCount; // Sepetteki ürün sayısını takip eder
+    private double totalPrice; // Toplam fiyat
+
+    public ShoppingCart(int capacity) {
+        this.cart = new Product[capacity];
+        this.itemCount = 0;
+        this.totalPrice = 0.0;
+    }
+    //add a product
+    public void addProduct(Product product) {
+      if(itemCount<cart.length){
+    cart[itemCount++]=product;
+    totalPrice+=product.getPrice();
+    System.out.println(product.getName()+" added to shopping cart");
+    }else{
+          System.out.println(product.getName()+" cart is full");
+      }
+    }
+
+    //remove a product
+    public void removeItem(String productName) {
+boolean found=false;
+for(int i=0; i<itemCount; i++){
+    if(cart[i].getName().equals(productName)){
+        totalPrice-=cart[i].getPrice();
+
+        for(int j=i; j<itemCount-1;j++){
+            cart[j]=cart[j+1];
+        }
+        cart[--itemCount]=null;
+        found=true;
+        System.out.println(productName+" removed from shopping cart");
+        break;
+    }
+}
+if(!found){
+    System.out.println(productName+" not found");
+}
+    }
+    public void viewCart(){
+        System.out.println("The cart is: ");
+        for(int i=0;i<itemCount;i++) {
+            System.out.println(cart[i]);
+        }
+            System.out.println("Total: "+totalPrice+"Tl");
+    }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+}
